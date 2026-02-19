@@ -6,6 +6,7 @@ interface Props {
 }
 
 const { lang } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const steps = [
   {
@@ -56,6 +57,27 @@ const stats = [
       <p class="text-lg text-surface-400 max-w-3xl mx-auto leading-relaxed">
         {t(lang, 'creative.subheadline')}
       </p>
+    </div>
+
+    <!-- AI bad image with prohibition overlay -->
+    <div class="flex justify-center mb-12 reveal">
+      <div class="relative w-full max-w-md rounded-2xl overflow-hidden border-2 border-red-500/40 shadow-lg shadow-red-500/10">
+        <img
+          src={`${base}/images/ai-gym-bad.jpg`}
+          alt="Absurd AI-generated gym image"
+          class="w-full h-auto object-cover opacity-60"
+          loading="lazy"
+        />
+        <!-- Red prohibition overlay -->
+        <div class="absolute inset-0 flex items-center justify-center">
+          <svg class="w-32 h-32 sm:w-40 sm:h-40 text-red-500 drop-shadow-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="4.93" y1="4.93" x2="19.07" y2="19.07" />
+          </svg>
+        </div>
+        <!-- Dark gradient -->
+        <div class="absolute inset-0 bg-gradient-to-t from-surface-950/80 via-transparent to-surface-950/40"></div>
+      </div>
     </div>
 
     <!-- Stats bar -->
