@@ -17,6 +17,7 @@ export const translations = {
     'nav.pricing': 'Precios',
     'nav.faq': 'FAQ',
     'nav.cta': 'Empieza gratis',
+    'nav.videocall': 'Agenda una llamada',
 
     // Hero
     'hero.headline': 'Llena tu gimnasio de clientes. Sin complicaciones.',
@@ -226,6 +227,16 @@ export const translations = {
     'faq.12.q': '¿Mi gimnasio es pequeño, merece la pena?',
     'faq.12.a': 'Especialmente para gimnasios pequeños. Nuestro plan gratuito te permite probar sin riesgo, y el plan Starter (90€/mes) genera una media de 5 socios nuevos al mes — eso son 250-400€ de ingreso adicional. Cuanto más pequeño, más se nota cada nuevo cliente.',
 
+    // Video Call
+    'videocall.headline': '¿Quieres verlo en acción?',
+    'videocall.subheadline': 'Te mostramos cómo funciona LeadFlow con tu gimnasio en una videollamada de 15 minutos. Sin compromiso, sin presión.',
+    'videocall.cta': 'Agendar videollamada gratuita',
+    'videocall.duration': '15 min',
+    'videocall.benefit1': 'Verás cómo quedarían tus anuncios reales',
+    'videocall.benefit2': 'Analizamos tu zona y competencia',
+    'videocall.benefit3': 'Te damos un plan de acción personalizado',
+    'videocall.nocommit': 'Sin compromiso. Si no te convence, no pasa nada.',
+
     // Final CTA
     'final.headline': '¿Listo para llenar tu gym?',
     'final.subheadline': 'Empieza gratis hoy. Sin tarjeta de crédito. Sin compromiso.',
@@ -249,6 +260,7 @@ export const translations = {
     'nav.pricing': 'Pricing',
     'nav.faq': 'FAQ',
     'nav.cta': 'Start for free',
+    'nav.videocall': 'Book a call',
     'hero.headline': 'Fill your gym with clients. No hassle.',
     'hero.subheadline': 'Our AI creates and manages your Meta ads while you train. First 20\u00A0€ of ad budget on us.',
     'hero.anti_agency': 'No agencies. No freelancers. No empty promises. Just measurable results.',
@@ -433,6 +445,17 @@ export const translations = {
     'faq.11.a': 'Not at all. You chat on WhatsApp as if talking to a regular person. The AI works behind the scenes — you only see results: leads, booked appointments, and new members. Zero tech jargon.',
     'faq.12.q': 'My gym is small. Is it worth it?',
     'faq.12.a': 'Especially for small gyms. Our free plan lets you try with zero risk, and the Starter plan (€90/mo) generates an average of 5 new members per month — that\'s €250-400 in additional revenue. The smaller you are, the more each new client matters.',
+
+    // Video Call
+    'videocall.headline': 'Want to see it in action?',
+    'videocall.subheadline': 'We\'ll show you how LeadFlow works for your gym in a 15-minute video call. No commitment, no pressure.',
+    'videocall.cta': 'Book a free video call',
+    'videocall.duration': '15 min',
+    'videocall.benefit1': 'See what your actual ads would look like',
+    'videocall.benefit2': 'We analyze your area and competition',
+    'videocall.benefit3': 'You get a personalized action plan',
+    'videocall.nocommit': 'No commitment. If it\'s not for you, no worries.',
+
     'final.headline': 'Ready to fill your gym?',
     'final.subheadline': 'Start for free today. No credit card. No commitment.',
     'final.cta.primary': 'Sign up for free',
@@ -453,6 +476,7 @@ export const translations = {
     'nav.pricing': 'Preise',
     'nav.faq': 'FAQ',
     'nav.cta': 'Kostenlos starten',
+    'nav.videocall': 'Anruf buchen',
     'hero.headline': 'Fülle dein Fitnessstudio mit Kunden. Ohne Aufwand.',
     'hero.subheadline': 'Unsere KI erstellt und verwaltet deine Meta-Anzeigen, während du trainierst. Die ersten 20\u00A0€ Werbebudget sind gratis.',
     'hero.anti_agency': 'Keine Agenturen. Keine Freelancer. Keine leeren Versprechen. Nur messbare Ergebnisse.',
@@ -640,6 +664,17 @@ export const translations = {
     'faq.11.a': 'Überhaupt nicht. Du chattest per WhatsApp, als würdest du mit einer normalen Person sprechen. Die KI arbeitet im Hintergrund — du siehst nur Ergebnisse: Leads, gebuchte Termine und neue Mitglieder. Null Fachjargon.',
     'faq.12.q': 'Mein Studio ist klein. Lohnt sich das?',
     'faq.12.a': 'Besonders für kleine Studios. Unser kostenloser Plan lässt dich risikofrei testen, und der Starter-Plan (90€/Monat) generiert durchschnittlich 5 neue Mitglieder pro Monat — das sind 250-400€ zusätzlicher Umsatz. Je kleiner du bist, desto mehr zählt jeder neue Kunde.',
+
+    // Video Call
+    'videocall.headline': 'Willst du es in Aktion sehen?',
+    'videocall.subheadline': 'Wir zeigen dir in einem 15-minütigen Videocall, wie LeadFlow für dein Studio funktioniert. Ohne Verpflichtung, ohne Druck.',
+    'videocall.cta': 'Kostenlosen Videocall buchen',
+    'videocall.duration': '15 Min.',
+    'videocall.benefit1': 'Sieh wie deine echten Anzeigen aussehen würden',
+    'videocall.benefit2': 'Wir analysieren deine Region und Wettbewerber',
+    'videocall.benefit3': 'Du bekommst einen personalisierten Aktionsplan',
+    'videocall.nocommit': 'Ohne Verpflichtung. Wenn es nichts für dich ist, kein Problem.',
+
     'final.headline': 'Bereit dein Studio zu füllen?',
     'final.subheadline': 'Starte heute kostenlos. Keine Kreditkarte. Keine Verpflichtung.',
     'final.cta.primary': 'Kostenlos registrieren',
@@ -660,6 +695,7 @@ export const translations = {
     'nav.pricing': 'Tarifs',
     'nav.faq': 'FAQ',
     'nav.cta': 'Commencer gratuitement',
+    'nav.videocall': 'Réserver un appel',
     'hero.headline': 'Remplissez votre salle de sport de clients. Sans prise de tête.',
     'hero.subheadline': 'Notre IA crée et gère vos publicités Meta pendant que vous entraînez. Les premiers 20\u00A0€ de budget publicitaire sont offerts.',
     'hero.anti_agency': 'Pas d\'agences. Pas de freelances. Pas de promesses vides. Juste des résultats mesurables.',
@@ -847,6 +883,17 @@ export const translations = {
     'faq.11.a': 'Pas du tout. Vous discutez sur WhatsApp comme avec une personne normale. L\'IA travaille en coulisses — vous ne voyez que les résultats : leads, rendez-vous réservés et nouveaux membres. Zéro jargon technique.',
     'faq.12.q': 'Ma salle est petite. Ça vaut le coup ?',
     'faq.12.a': 'Surtout pour les petites salles. Notre plan gratuit vous permet de tester sans risque, et le plan Starter (90€/mois) génère en moyenne 5 nouveaux membres par mois — soit 250-400€ de revenus supplémentaires. Plus vous êtes petit, plus chaque nouveau client compte.',
+
+    // Video Call
+    'videocall.headline': 'Vous voulez le voir en action ?',
+    'videocall.subheadline': 'Nous vous montrons comment LeadFlow fonctionne pour votre salle lors d\'un appel vidéo de 15 minutes. Sans engagement, sans pression.',
+    'videocall.cta': 'Réserver un appel vidéo gratuit',
+    'videocall.duration': '15 min',
+    'videocall.benefit1': 'Voyez à quoi ressembleraient vos vraies annonces',
+    'videocall.benefit2': 'Nous analysons votre zone et la concurrence',
+    'videocall.benefit3': 'Vous recevez un plan d\'action personnalisé',
+    'videocall.nocommit': 'Sans engagement. Si ça ne vous convient pas, pas de souci.',
+
     'final.headline': 'Prêt à remplir votre salle ?',
     'final.subheadline': 'Commencez gratuitement aujourd\'hui. Sans carte bancaire. Sans engagement.',
     'final.cta.primary': 'S\'inscrire gratuitement',
@@ -867,6 +914,7 @@ export const translations = {
     'nav.pricing': 'Prezzi',
     'nav.faq': 'FAQ',
     'nav.cta': 'Inizia gratis',
+    'nav.videocall': 'Prenota una chiamata',
     'hero.headline': 'Riempi la tua palestra di clienti. Senza complicazioni.',
     'hero.subheadline': 'La nostra IA crea e gestisce le tue inserzioni Meta mentre ti alleni. I primi 20\u00A0€ di budget pubblicitario sono gratis.',
     'hero.anti_agency': 'Niente agenzie. Niente freelancer. Niente promesse vuote. Solo risultati misurabili.',
@@ -1054,6 +1102,17 @@ export const translations = {
     'faq.11.a': 'Per niente. Chatti su WhatsApp come se parlassi con una persona normale. L\'IA lavora dietro le quinte — tu vedi solo i risultati: lead, appuntamenti prenotati e nuovi soci. Zero tecnicismi.',
     'faq.12.q': 'La mia palestra è piccola. Ne vale la pena?',
     'faq.12.a': 'Soprattutto per le palestre piccole. Il nostro piano gratuito ti permette di provare senza rischi, e il piano Starter (90€/mese) genera una media di 5 nuovi soci al mese — sono 250-400€ di entrate aggiuntive. Più sei piccolo, più ogni nuovo cliente fa la differenza.',
+
+    // Video Call
+    'videocall.headline': 'Vuoi vederlo in azione?',
+    'videocall.subheadline': 'Ti mostriamo come funziona LeadFlow per la tua palestra in una videochiamata di 15 minuti. Senza impegno, senza pressione.',
+    'videocall.cta': 'Prenota una videochiamata gratuita',
+    'videocall.duration': '15 min',
+    'videocall.benefit1': 'Vedrai come sarebbero le tue inserzioni reali',
+    'videocall.benefit2': 'Analizziamo la tua zona e la concorrenza',
+    'videocall.benefit3': 'Ricevi un piano d\'azione personalizzato',
+    'videocall.nocommit': 'Senza impegno. Se non fa per te, nessun problema.',
+
     'final.headline': 'Pronto a riempire la tua palestra?',
     'final.subheadline': 'Inizia gratis oggi. Nessuna carta di credito. Nessun impegno.',
     'final.cta.primary': 'Registrati gratis',
