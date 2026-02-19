@@ -1,0 +1,102 @@
+---
+import { t, type Lang } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const steps = [
+  {
+    number: '01',
+    icon: `<svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>`,
+    title: t(lang, 'creative.step1.title'),
+    description: t(lang, 'creative.step1.description'),
+  },
+  {
+    number: '02',
+    icon: `<svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>`,
+    title: t(lang, 'creative.step2.title'),
+    description: t(lang, 'creative.step2.description'),
+  },
+  {
+    number: '03',
+    icon: `<svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/></svg>`,
+    title: t(lang, 'creative.step3.title'),
+    description: t(lang, 'creative.step3.description'),
+  },
+  {
+    number: '04',
+    icon: `<svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>`,
+    title: t(lang, 'creative.step4.title'),
+    description: t(lang, 'creative.step4.description'),
+  },
+];
+
+const stats = [
+  { value: t(lang, 'creative.stat.tests'), label: t(lang, 'creative.stat.tests.label') },
+  { value: t(lang, 'creative.stat.campaigns'), label: t(lang, 'creative.stat.campaigns.label') },
+  { value: t(lang, 'creative.stat.refresh'), label: t(lang, 'creative.stat.refresh.label') },
+];
+---
+
+<section class="relative py-16 sm:py-24 bg-surface-950 overflow-hidden">
+  <!-- Background effects -->
+  <div class="absolute inset-0 dot-grid"></div>
+  <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-accent-500/5 rounded-full blur-[150px]"></div>
+  <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-cyber-400/5 rounded-full blur-[120px]"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <!-- Header -->
+    <div class="text-center mb-12 sm:mb-16 reveal">
+      <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4" style="font-family: var(--font-display);">
+        {t(lang, 'creative.headline')}
+      </h2>
+      <p class="text-lg text-surface-400 max-w-3xl mx-auto leading-relaxed">
+        {t(lang, 'creative.subheadline')}
+      </p>
+    </div>
+
+    <!-- Stats bar -->
+    <div class="grid grid-cols-3 gap-4 sm:gap-8 max-w-2xl mx-auto mb-14 reveal">
+      {stats.map((stat) => (
+        <div class="text-center">
+          <div class="text-2xl sm:text-3xl font-bold text-cyber-400 font-mono mb-1">{stat.value}</div>
+          <div class="text-xs sm:text-sm text-surface-500">{stat.label}</div>
+        </div>
+      ))}
+    </div>
+
+    <!-- 4-step process -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 stagger-children">
+      {steps.map((step) => (
+        <div class="relative group">
+          <div class="glass rounded-2xl p-6 h-full border border-surface-700/50 hover:border-accent-500/30 transition-colors duration-300">
+            <!-- Step number -->
+            <div class="flex items-center gap-3 mb-4">
+              <span class="text-sm font-mono font-bold text-accent-400/60">{step.number}</span>
+              <div class="w-10 h-10 rounded-lg bg-accent-500/10 text-accent-400 border border-accent-500/20 flex items-center justify-center">
+                <Fragment set:html={step.icon} />
+              </div>
+            </div>
+
+            <h3 class="text-base font-bold text-white mb-2">
+              {step.title}
+            </h3>
+            <p class="text-sm text-surface-400 leading-relaxed">
+              {step.description}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Proof statement -->
+    <div class="mt-12 text-center reveal">
+      <p class="text-surface-300 max-w-2xl mx-auto leading-relaxed italic border-l-2 border-accent-500/50 pl-6 text-left sm:text-center sm:border-l-0 sm:pl-0">
+        {t(lang, 'creative.proof')}
+      </p>
+    </div>
+  </div>
+</section>
