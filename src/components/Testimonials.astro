@@ -1,0 +1,65 @@
+---
+import { t, type Lang } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const stats = [
+  { number: t(lang, 'testimonials.stat1.number'), label: t(lang, 'testimonials.stat1.label') },
+  { number: t(lang, 'testimonials.stat2.number'), label: t(lang, 'testimonials.stat2.label') },
+  { number: t(lang, 'testimonials.stat3.number'), label: t(lang, 'testimonials.stat3.label') },
+];
+---
+
+<section class="py-16 sm:py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12 sm:mb-16 reveal">
+      <h2 class="text-3xl sm:text-4xl font-bold text-surface-900" style="font-family: var(--font-display);">
+        {t(lang, 'testimonials.headline')}
+      </h2>
+    </div>
+
+    <!-- Credibility block -->
+    <div class="max-w-4xl mx-auto mb-12 reveal">
+      <div class="grid md:grid-cols-5 gap-8 items-center">
+        <!-- Image -->
+        <div class="md:col-span-2 rounded-2xl overflow-hidden aspect-square reveal-left border border-surface-200">
+          <img
+            src="/images/gym-class.jpg"
+            alt={t(lang, 'testimonials.img.alt')}
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </div>
+        <!-- Text -->
+        <div class="md:col-span-3">
+          <div class="relative p-8 sm:p-10 rounded-2xl bg-white/80 backdrop-blur-sm border border-primary-200/50 glow-sm">
+            <svg class="absolute top-4 left-6 w-10 h-10 text-primary-200" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H14.017zM0 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151C7.546 6.068 5.983 8.789 5.983 11h4v10H0z"/>
+            </svg>
+            <p class="text-lg sm:text-xl text-surface-700 leading-relaxed relative z-10">
+              {t(lang, 'testimonials.text')}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="grid grid-cols-3 gap-8 max-w-2xl mx-auto stagger-children">
+      {stats.map((stat) => (
+        <div class="text-center">
+          <p class="text-3xl sm:text-4xl font-bold gradient-text counter font-mono" data-target={stat.number.replace('+', '')} data-prefix={stat.number.startsWith('+') ? '+' : ''}>
+            {stat.number}
+          </p>
+          <p class="mt-1 text-sm text-surface-500">
+            {stat.label}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

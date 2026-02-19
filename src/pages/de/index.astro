@@ -1,0 +1,42 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Hero from '../../components/Hero.astro';
+import SocialProof from '../../components/SocialProof.astro';
+import Problem from '../../components/Problem.astro';
+import HowItWorks from '../../components/HowItWorks.astro';
+import Benefits from '../../components/Benefits.astro';
+import BeforeAfter from '../../components/BeforeAfter.astro';
+import ROICalculator from '../../components/ROICalculator.astro';
+import FoundersSection from '../../components/FoundersSection.astro';
+import Testimonials from '../../components/Testimonials.astro';
+import Pricing from '../../components/Pricing.astro';
+import FAQ from '../../components/FAQ.astro';
+import FinalCTA from '../../components/FinalCTA.astro';
+import Footer from '../../components/Footer.astro';
+
+const lang = 'de';
+---
+
+<Layout
+  title="LeadFlow — Fülle dein Fitnessstudio mit Kunden dank KI"
+  description="Unsere KI erstellt und verwaltet deine Meta-Anzeigen, während du trainierst. Automatisiertes Marketing für Fitnessstudios. Die ersten 20€ Werbebudget sind gratis."
+  lang={lang}
+>
+  <Navbar lang={lang} />
+  <main>
+    <Hero lang={lang} />
+    <SocialProof lang={lang} />
+    <Problem lang={lang} />
+    <HowItWorks lang={lang} />
+    <Benefits lang={lang} />
+    <BeforeAfter lang={lang} />
+    <ROICalculator lang={lang} />
+    <FoundersSection lang={lang} />
+    <Testimonials lang={lang} />
+    <Pricing lang={lang} />
+    <FAQ lang={lang} />
+    <FinalCTA lang={lang} />
+  </main>
+  <Footer lang={lang} />
+</Layout>

@@ -1,0 +1,52 @@
+---
+import { t, getLocalePath, type Lang } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer class="relative bg-surface-950 text-surface-400 py-12 border-t border-white/5">
+  <div class="absolute inset-0 dot-grid opacity-50"></div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="grid sm:grid-cols-3 gap-8">
+      <!-- Brand -->
+      <div>
+        <a href={getLocalePath(lang)} class="flex items-center gap-2 mb-4">
+          <div class="w-8 h-8 bg-gradient-to-br from-primary-500 to-cyber-400 rounded-lg flex items-center justify-center glow-sm">
+            <span class="text-white font-bold text-sm">LF</span>
+          </div>
+          <span class="text-xl font-bold text-white">Lead<span class="text-primary-400">Flow</span></span>
+        </a>
+        <p class="text-sm">{t(lang, 'footer.tagline')}</p>
+      </div>
+
+      <!-- Legal -->
+      <div>
+        <h4 class="text-sm font-semibold text-surface-300 uppercase tracking-wider mb-4">{t(lang, 'footer.legal')}</h4>
+        <ul class="space-y-2">
+          <li><a href="#" class="text-sm hover:text-primary-400 transition-colors">{t(lang, 'footer.terms')}</a></li>
+          <li><a href="#" class="text-sm hover:text-primary-400 transition-colors">{t(lang, 'footer.privacy')}</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h4 class="text-sm font-semibold text-surface-300 uppercase tracking-wider mb-4">{t(lang, 'footer.contact')}</h4>
+        <ul class="space-y-2">
+          <li><a href="mailto:hello@leadflow.eu" class="text-sm hover:text-primary-400 transition-colors">hello@leadflow.eu</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-8 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-xs">&copy; {year} LeadFlow. {t(lang, 'footer.made')}</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Spacer for mobile sticky CTA -->
+<div class="h-16 md:hidden"></div>

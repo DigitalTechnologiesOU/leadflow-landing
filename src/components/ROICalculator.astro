@@ -1,0 +1,169 @@
+---
+import { t, type Lang } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+---
+
+<section class="relative py-16 sm:py-24 bg-surface-950 overflow-hidden">
+  <!-- Background effects -->
+  <div class="absolute inset-0 dot-grid"></div>
+  <div class="absolute top-1/2 left-1/4 w-[500px] h-[300px] bg-cyber-400/5 rounded-full blur-[120px]"></div>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="text-center mb-10 reveal">
+      <h2 class="text-3xl sm:text-4xl font-bold text-white" style="font-family: var(--font-display);">
+        {t(lang, 'roi.headline')}
+      </h2>
+      <p class="mt-4 text-lg text-surface-400 max-w-2xl mx-auto">
+        {t(lang, 'roi.subheadline')}
+      </p>
+    </div>
+
+    <div class="glass rounded-2xl p-8 sm:p-10 glow-sm reveal">
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Sliders -->
+        <div class="space-y-8">
+          <!-- Monthly fee slider -->
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <label for="fee-slider" class="text-sm font-medium text-surface-300">
+                {t(lang, 'roi.slider.fee')}
+              </label>
+              <span id="fee-value" class="text-lg font-bold text-cyber-400 font-mono">50€</span>
+            </div>
+            <input
+              type="range"
+              id="fee-slider"
+              min="30"
+              max="100"
+              value="50"
+              step="5"
+              class="w-full h-2 bg-white/10 rounded-full appearance-none cursor-pointer accent-cyber-400 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-cyber-400 [&::-webkit-slider-thumb]:shadow-[0_0_10px_rgba(34,211,238,0.5)] [&::-webkit-slider-thumb]:cursor-pointer"
+            />
+            <div class="flex justify-between text-xs text-surface-500 mt-1">
+              <span>30€</span>
+              <span>100€</span>
+            </div>
+          </div>
+
+          <!-- Retention slider -->
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <label for="retention-slider" class="text-sm font-medium text-surface-300">
+                {t(lang, 'roi.slider.retention')}
+              </label>
+              <span id="retention-value" class="text-lg font-bold text-cyber-400 font-mono">10</span>
+            </div>
+            <input
+              type="range"
+              id="retention-slider"
+              min="4"
+              max="18"
+              value="10"
+              step="1"
+              class="w-full h-2 bg-white/10 rounded-full appearance-none cursor-pointer accent-cyber-400 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-cyber-400 [&::-webkit-slider-thumb]:shadow-[0_0_10px_rgba(34,211,238,0.5)] [&::-webkit-slider-thumb]:cursor-pointer"
+            />
+            <div class="flex justify-between text-xs text-surface-500 mt-1">
+              <span>4</span>
+              <span>18</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Results -->
+        <div class="space-y-6">
+          <!-- LTV -->
+          <div class="p-4 rounded-xl bg-white/5 border border-white/10">
+            <p class="text-xs text-surface-500 uppercase tracking-wider mb-1">{t(lang, 'roi.result.ltv')}</p>
+            <p id="ltv-result" class="text-2xl font-bold text-white font-mono">500€</p>
+          </div>
+
+          <!-- Monthly revenue -->
+          <div class="p-4 rounded-xl bg-white/5 border border-white/10">
+            <p class="text-xs text-surface-500 uppercase tracking-wider mb-1">{t(lang, 'roi.result.revenue')}</p>
+            <p id="revenue-result" class="text-2xl font-bold text-cyber-400 font-mono">250€</p>
+          </div>
+
+          <!-- ROI -->
+          <div class="p-4 rounded-xl bg-cyber-400/10 border border-cyber-400/20">
+            <p class="text-xs text-surface-500 uppercase tracking-wider mb-1">{t(lang, 'roi.result.roi')}</p>
+            <p id="roi-result" class="text-3xl font-bold gradient-text font-mono">+64%</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Disclaimer -->
+      <p class="mt-6 text-xs text-surface-500 text-center">
+        {t(lang, 'roi.disclaimer')}
+      </p>
+
+      <!-- CTA -->
+      <div class="mt-6 text-center">
+        <a
+          href="#register"
+          class="btn-glow btn-press inline-flex items-center justify-center px-8 py-3 text-sm font-semibold text-white rounded-full"
+        >
+          {t(lang, 'roi.cta')}
+          <svg class="ml-2 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const feeSlider = document.getElementById('fee-slider') as HTMLInputElement;
+  const retentionSlider = document.getElementById('retention-slider') as HTMLInputElement;
+  const feeValue = document.getElementById('fee-value')!;
+  const retentionValue = document.getElementById('retention-value')!;
+  const ltvResult = document.getElementById('ltv-result')!;
+  const revenueResult = document.getElementById('revenue-result')!;
+  const roiResult = document.getElementById('roi-result')!;
+
+  function calculate() {
+    const fee = parseInt(feeSlider.value);
+    const retention = parseInt(retentionSlider.value);
+
+    // LTV = monthly fee × retention months
+    const ltv = fee * retention;
+
+    // Starter plan assumptions: 20 leads/mo, 25% conversion = 5 new members
+    const newMembers = 5;
+    const monthlyRevenue = newMembers * fee;
+
+    // ROI: (revenue - cost) / cost × 100
+    // Cost = 300€ ads + 90€ LeadFlow = 390€
+    const monthlyCost = 390;
+    const roi = Math.round(((monthlyRevenue - monthlyCost) / monthlyCost) * 100);
+
+    // Animate values
+    animateValue(feeValue, `${fee}€`);
+    animateValue(retentionValue, `${retention}`);
+    animateValue(ltvResult, `${ltv.toLocaleString()}€`);
+    animateValue(revenueResult, `${monthlyRevenue.toLocaleString()}€`);
+    animateValue(roiResult, `${roi > 0 ? '+' : ''}${roi}%`);
+  }
+
+  function animateValue(el: HTMLElement, value: string) {
+    el.style.transition = 'opacity 0.15s';
+    el.style.opacity = '0.5';
+    requestAnimationFrame(() => {
+      el.textContent = value;
+      requestAnimationFrame(() => {
+        el.style.opacity = '1';
+      });
+    });
+  }
+
+  feeSlider?.addEventListener('input', calculate);
+  retentionSlider?.addEventListener('input', calculate);
+
+  // Initial calculation
+  calculate();
+</script>

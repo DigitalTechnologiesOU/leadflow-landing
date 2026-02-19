@@ -1,0 +1,131 @@
+---
+import '../styles/global.css';
+import { translations } from '../i18n/translations';
+import { t, getLocalePath } from '../i18n/utils';
+import type { Lang } from '../i18n/utils';
+
+interface Props {
+  title: string;
+  description: string;
+  lang?: string;
+  canonicalUrl?: string;
+}
+
+const { title, description, lang = 'es', canonicalUrl } = Astro.props;
+const currentPath = Astro.url.pathname;
+const siteUrl = 'https://leadflow.eu';
+
+const allLangs = ['es', 'en', 'de', 'fr', 'it'] as const;
+const localeMap: Record<string, string> = { es: 'es_ES', en: 'en_US', de: 'de_DE', fr: 'fr_FR', it: 'it_IT' };
+// Production paths (without GitHub Pages base) for SEO tags
+function prodLangPath(l: string): string {
+  return l === 'es' ? '/' : `/${l}/`;
+}
+
+// Schema.org structured data
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "LeadFlow",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "description": t(lang, 'schema.description'),
+  "url": "https://leadflow.eu",
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Free",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    {
+      "@type": "Offer",
+      "name": "Starter",
+      "price": "90",
+      "priceCurrency": "EUR",
+      "billingIncrement": "P1M"
+    },
+    {
+      "@type": "Offer",
+      "name": "Growth",
+      "price": "180",
+      "priceCurrency": "EUR",
+      "billingIncrement": "P1M"
+    },
+    {
+      "@type": "Offer",
+      "name": "Pro",
+      "price": "290",
+      "priceCurrency": "EUR",
+      "billingIncrement": "P1M"
+    }
+  ],
+  "provider": {
+    "@type": "Organization",
+    "name": "LeadFlow",
+    "url": "https://leadflow.eu"
+  }
+};
+
+const tr = translations[lang as keyof typeof translations] as Record<string, string>;
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": Array.from({ length: 12 }, (_, i) => ({
+    "@type": "Question",
+    "name": tr[`faq.${i + 1}.q`],
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": tr[`faq.${i + 1}.a`],
+    },
+  })),
+};
+---
+
+<!DOCTYPE html>
+<html lang={lang} class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Canonical & hreflang -->
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+    {allLangs.map((l) => (
+      <link rel="alternate" hreflang={l} href={`${siteUrl}${prodLangPath(l)}`} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={`${siteUrl}/`} />
+
+    <!-- OG Tags -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={`https://leadflow.eu${currentPath}`} />
+    <meta property="og:image" content="https://leadflow.eu/images/og-image.jpg" />
+    <meta property="og:locale" content={localeMap[lang] || 'es_ES'} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- Fonts: Inter (body) + Space Grotesk (headlines) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </head>
+  <body class="bg-white text-surface-800 antialiased">
+    <slot />
+    <script src="../scripts/animations.ts"></script>
+  </body>
+</html>

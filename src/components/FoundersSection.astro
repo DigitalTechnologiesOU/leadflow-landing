@@ -1,0 +1,75 @@
+---
+import { t, type Lang } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const gymTypes = [
+  'CrossFit',
+  'Yoga',
+  'Pilates',
+  t(lang, 'founders.gymtype.martial'),
+  'Boutique',
+  'Functional',
+  'EMS',
+  t(lang, 'founders.gymtype.traditional'),
+  'HIIT',
+  'Boxing',
+];
+---
+
+<section class="relative py-16 sm:py-24 bg-surface-950 overflow-hidden">
+  <!-- Background effects -->
+  <div class="absolute inset-0 dot-grid opacity-50"></div>
+  <div class="absolute bottom-0 right-1/4 w-[500px] h-[300px] bg-primary-500/5 rounded-full blur-[120px]"></div>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="text-center mb-10 reveal">
+      <h2 class="text-3xl sm:text-4xl font-bold text-white" style="font-family: var(--font-display);">
+        {t(lang, 'founders.headline')}
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-5 gap-8 items-center reveal">
+      <!-- Founder placeholder -->
+      <div class="md:col-span-2 flex justify-center">
+        <div class="relative">
+          <div class="w-40 h-40 rounded-2xl bg-gradient-to-br from-primary-500 to-cyber-400 flex items-center justify-center glow-sm">
+            <span class="text-white font-bold text-4xl" style="font-family: var(--font-display);">LF</span>
+          </div>
+          <div class="absolute -bottom-2 -right-2 w-8 h-8 rounded-full bg-cyber-400 flex items-center justify-center">
+            <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bio -->
+      <div class="md:col-span-3">
+        <h3 class="text-xl font-bold text-white mb-1">{t(lang, 'founders.name')}</h3>
+        <p class="text-sm text-primary-400 font-medium mb-4">{t(lang, 'founders.title')}</p>
+        <p class="text-surface-400 leading-relaxed">
+          {t(lang, 'founders.bio')}
+        </p>
+      </div>
+    </div>
+
+    <!-- Gym types -->
+    <div class="mt-12 text-center reveal">
+      <p class="text-sm font-semibold text-surface-300 uppercase tracking-wider mb-6">
+        {t(lang, 'founders.gymtypes.headline')}
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        {gymTypes.map((type) => (
+          <span class="px-4 py-2 rounded-full text-sm font-medium glass text-surface-300 hover:text-white hover:border-primary-500/30 transition-colors cursor-default">
+            {type}
+          </span>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

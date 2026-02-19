@@ -1,0 +1,84 @@
+---
+import { t, type Lang } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const steps = [
+  {
+    number: '01',
+    icon: `<svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>`,
+    title: t(lang, 'how.step1.title'),
+    description: t(lang, 'how.step1.description'),
+    accent: false,
+  },
+  {
+    number: '02',
+    icon: `<svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>`,
+    title: t(lang, 'how.step2.title'),
+    description: t(lang, 'how.step2.description'),
+    accent: false,
+  },
+  {
+    number: '03',
+    icon: `<svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>`,
+    title: t(lang, 'how.step3.title'),
+    description: t(lang, 'how.step3.description'),
+    accent: false,
+  },
+  {
+    number: '04',
+    icon: `<svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`,
+    title: t(lang, 'how.step4.title'),
+    description: t(lang, 'how.step4.description'),
+    accent: true,
+  },
+];
+---
+
+<section id="how-it-works" class="relative py-16 sm:py-24 bg-surface-950 overflow-hidden">
+  <!-- Background effects -->
+  <div class="absolute inset-0 dot-grid"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-primary-500/5 rounded-full blur-[120px]"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="text-center mb-12 sm:mb-16 reveal">
+      <h2 class="text-3xl sm:text-4xl font-bold text-white" style="font-family: var(--font-display);">
+        {t(lang, 'how.headline')}
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 relative stagger-children">
+      <!-- Connection line (desktop) -->
+      <div class="hidden lg:block absolute top-20 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-primary-500/50 via-cyber-400/50 to-accent-500/50"></div>
+
+      {steps.map((step) => (
+        <div class={`relative text-center ${step.accent ? 'lg:mt-0' : ''}`}>
+          <!-- Step number circle -->
+          <div class={`relative mx-auto w-16 h-16 glass rounded-full flex items-center justify-center mb-6 z-10 ${step.accent ? 'glow-cyber' : 'glow-sm'}`}>
+            <span class={`font-bold text-lg font-mono ${step.accent ? 'text-cyber-400' : 'text-primary-400'}`}>{step.number}</span>
+          </div>
+
+          <!-- Icon -->
+          <div class={`w-14 h-14 mx-auto rounded-xl flex items-center justify-center mb-5 border ${
+            step.accent
+              ? 'bg-cyber-400/10 text-cyber-400 border-cyber-400/20'
+              : 'bg-primary-500/10 text-primary-400 border-primary-500/20'
+          }`}>
+            <Fragment set:html={step.icon} />
+          </div>
+
+          <h3 class="text-lg font-bold text-white mb-3">
+            {step.title}
+          </h3>
+          <p class="text-surface-400 leading-relaxed max-w-sm mx-auto">
+            {step.description}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

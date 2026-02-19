@@ -1,0 +1,202 @@
+---
+import { t, type Lang } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const plans = [
+  {
+    name: t(lang, 'pricing.free.name'),
+    price: t(lang, 'pricing.free.price'),
+    period: t(lang, 'pricing.free.period'),
+    leads: t(lang, 'pricing.free.leads'),
+    members: t(lang, 'pricing.free.members'),
+    gyms: t(lang, 'pricing.free.gyms'),
+    cta: t(lang, 'pricing.free.cta'),
+    roi: t(lang, 'pricing.free.roi'),
+    scarcity: t(lang, 'pricing.free.scarcity'),
+    featured: false,
+    features: ['ads', 'dashboard'],
+  },
+  {
+    name: t(lang, 'pricing.starter.name'),
+    price: t(lang, 'pricing.starter.price'),
+    period: t(lang, 'pricing.starter.period'),
+    leads: t(lang, 'pricing.starter.leads'),
+    members: t(lang, 'pricing.starter.members'),
+    gyms: t(lang, 'pricing.starter.gyms'),
+    cta: t(lang, 'pricing.starter.cta'),
+    roi: t(lang, 'pricing.starter.roi'),
+    featured: false,
+    features: ['ads', 'whatsapp', 'optimization', 'dashboard'],
+  },
+  {
+    name: t(lang, 'pricing.growth.name'),
+    price: t(lang, 'pricing.growth.price'),
+    period: t(lang, 'pricing.growth.period'),
+    leads: t(lang, 'pricing.growth.leads'),
+    members: t(lang, 'pricing.growth.members'),
+    gyms: t(lang, 'pricing.growth.gyms'),
+    cta: t(lang, 'pricing.growth.cta'),
+    badge: t(lang, 'pricing.growth.badge'),
+    roi: t(lang, 'pricing.growth.roi'),
+    featured: true,
+    features: ['ads', 'whatsapp', 'optimization', 'dashboard', 'support'],
+  },
+  {
+    name: t(lang, 'pricing.pro.name'),
+    price: t(lang, 'pricing.pro.price'),
+    period: t(lang, 'pricing.pro.period'),
+    leads: t(lang, 'pricing.pro.leads'),
+    members: t(lang, 'pricing.pro.members'),
+    gyms: t(lang, 'pricing.pro.gyms'),
+    cta: t(lang, 'pricing.pro.cta'),
+    roi: t(lang, 'pricing.pro.roi'),
+    featured: false,
+    features: ['ads', 'whatsapp', 'optimization', 'dashboard', 'support', 'dedicated'],
+  },
+];
+
+const featureLabels: Record<string, string> = {
+  ads: t(lang, 'pricing.feature.ads'),
+  whatsapp: t(lang, 'pricing.feature.whatsapp'),
+  optimization: t(lang, 'pricing.feature.optimization'),
+  dashboard: t(lang, 'pricing.feature.dashboard'),
+  support: t(lang, 'pricing.feature.support'),
+  dedicated: t(lang, 'pricing.feature.dedicated'),
+};
+---
+
+<section id="pricing" class="relative py-16 sm:py-24 dot-grid-light">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-8 reveal">
+      <h2 class="text-3xl sm:text-4xl font-bold text-surface-900" style="font-family: var(--font-display);">
+        {t(lang, 'pricing.headline')}
+      </h2>
+      <p class="mt-4 text-lg text-surface-500 max-w-2xl mx-auto">
+        {t(lang, 'pricing.subheadline')}
+      </p>
+    </div>
+
+    <!-- Guarantee banner -->
+    <div class="max-w-2xl mx-auto mb-10 reveal">
+      <div class="flex items-center justify-center gap-3 px-6 py-3 rounded-full bg-accent-500/10 border border-accent-500/20">
+        <svg class="w-5 h-5 text-accent-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+        </svg>
+        <span class="text-sm font-medium text-accent-600">{t(lang, 'pricing.guarantee')}</span>
+      </div>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto stagger-children">
+      {plans.map((plan) => (
+        <div class={`relative flex flex-col p-6 rounded-2xl transition-all card-hover ${
+          plan.featured
+            ? 'bg-white border-2 border-primary-400/50 glow-md scale-[1.02]'
+            : 'bg-white/80 backdrop-blur-sm border border-surface-200 hover:border-primary-300/40'
+        }`}>
+          {plan.badge && (
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2">
+              <span class="btn-glow px-3 py-1 text-white text-xs font-bold rounded-full uppercase tracking-wide">
+                {plan.badge}
+              </span>
+            </div>
+          )}
+
+          {plan.scarcity && (
+            <div class="absolute -top-3 right-4">
+              <span class="flex items-center gap-1 px-2 py-0.5 bg-amber-500/10 text-amber-600 text-xs font-semibold rounded-full border border-amber-500/20">
+                <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+                {plan.scarcity}
+              </span>
+            </div>
+          )}
+
+          <div class="text-center mb-6">
+            <h3 class="text-lg font-bold text-surface-900">{plan.name}</h3>
+            <div class="mt-3">
+              <span class="text-4xl font-bold text-surface-900 font-mono">{plan.price}</span>
+              {plan.period && (
+                <span class="text-surface-400 text-sm">{plan.period}</span>
+              )}
+            </div>
+          </div>
+
+          <!-- Limits -->
+          <div class="space-y-2 mb-6 pb-6 border-b border-surface-100">
+            <div class="flex items-center gap-2 text-sm text-surface-600">
+              <svg class="w-4 h-4 text-primary-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              {plan.leads}
+            </div>
+            <div class="flex items-center gap-2 text-sm text-surface-600">
+              <svg class="w-4 h-4 text-primary-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+              {plan.members}
+            </div>
+            <div class="flex items-center gap-2 text-sm text-surface-600">
+              <svg class="w-4 h-4 text-primary-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+              </svg>
+              {plan.gyms}
+            </div>
+          </div>
+
+          <!-- Features -->
+          <div class="space-y-2 mb-4 flex-1">
+            {plan.features.map((feature) => (
+              <div class="flex items-center gap-2 text-sm text-surface-600">
+                <svg class="w-4 h-4 text-cyber-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                {featureLabels[feature]}
+              </div>
+            ))}
+          </div>
+
+          <!-- ROI line -->
+          {plan.roi && (
+            <p class="text-xs text-accent-600 font-medium mb-4 text-center px-2">
+              {plan.roi}
+            </p>
+          )}
+
+          <!-- CTA -->
+          <a
+            href="#register"
+            class={`btn-press block w-full text-center px-5 py-3 text-sm font-semibold rounded-full transition-all ${
+              plan.featured
+                ? 'btn-glow text-white'
+                : 'text-primary-500 bg-primary-500/10 hover:bg-primary-500/20 border border-primary-500/20'
+            }`}
+          >
+            {plan.cta}
+          </a>
+        </div>
+      ))}
+    </div>
+
+    <!-- Enterprise -->
+    <div class="mt-8 max-w-6xl mx-auto reveal">
+      <div class="flex flex-col sm:flex-row items-center justify-between p-6 rounded-2xl bg-white/80 backdrop-blur-sm border border-surface-200 gap-4 card-hover">
+        <div>
+          <h3 class="text-lg font-bold text-surface-900">{t(lang, 'pricing.enterprise.name')}</h3>
+          <p class="text-surface-500 text-sm">
+            {t(lang, 'pricing.enterprise.leads')} · {t(lang, 'pricing.enterprise.members')} · {t(lang, 'pricing.enterprise.gyms')}
+          </p>
+        </div>
+        <a
+          href="#book-call"
+          class="btn-press inline-flex items-center px-6 py-3 text-sm font-semibold text-primary-500 bg-primary-500/10 rounded-full hover:bg-primary-500/20 border border-primary-500/20 transition-colors"
+        >
+          {t(lang, 'pricing.enterprise.cta')}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

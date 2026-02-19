@@ -1,0 +1,210 @@
+---
+import { t, getLocalePath, type Lang } from '../i18n/utils';
+import { languages, defaultLang } from '../i18n/translations';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+// Build language paths for all languages
+const langPaths: Record<string, string> = {};
+for (const code of Object.keys(languages) as Lang[]) {
+  langPaths[code] = getLocalePath(code);
+}
+
+// Flag SVG data for each language (simplified circle flags)
+const flags: Record<string, { colors: string[] }> = {
+  es: { colors: ['#c60b1e', '#ffc400', '#c60b1e'] },    // red-yellow-red horizontal
+  en: { colors: ['#012169', '#C8102E', '#FFFFFF'] },      // blue-red-white (UK)
+  de: { colors: ['#000000', '#DD0000', '#FFCC00'] },      // black-red-gold horizontal
+  fr: { colors: ['#002395', '#FFFFFF', '#ED2939'] },      // blue-white-red vertical
+  it: { colors: ['#009246', '#FFFFFF', '#CE2B37'] },      // green-white-red vertical
+};
+---
+
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-surface-950/70 backdrop-blur-xl border-b border-white/5 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo -->
+      <a href={getLocalePath(lang)} class="flex items-center gap-2">
+        <div class="w-8 h-8 bg-gradient-to-br from-primary-500 to-cyber-400 rounded-lg flex items-center justify-center glow-sm">
+          <span class="text-white font-bold text-sm">LF</span>
+        </div>
+        <span class="text-xl font-bold text-white">Lead<span class="text-primary-400">Flow</span></span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#how-it-works" class="text-sm font-medium text-surface-400 hover:text-white transition-colors">
+          {t(lang, 'nav.howItWorks')}
+        </a>
+        <a href="#pricing" class="text-sm font-medium text-surface-400 hover:text-white transition-colors">
+          {t(lang, 'nav.pricing')}
+        </a>
+        <a href="#faq" class="text-sm font-medium text-surface-400 hover:text-white transition-colors">
+          {t(lang, 'nav.faq')}
+        </a>
+
+        <!-- Language Switcher - Circular Flags -->
+        <div class="flex items-center gap-1.5">
+          {(Object.keys(languages) as Lang[]).map((code) => (
+            <a
+              href={langPaths[code]}
+              class={`group relative w-7 h-7 rounded-full overflow-hidden border-2 transition-all ${
+                code === lang
+                  ? 'border-primary-400 scale-110 shadow-[0_0_8px_rgba(99,102,241,0.4)]'
+                  : 'border-white/10 hover:border-white/30 opacity-60 hover:opacity-100'
+              }`}
+              title={languages[code]}
+              aria-label={languages[code]}
+            >
+              {code === 'es' && (
+                <svg viewBox="0 0 100 100" class="w-full h-full">
+                  <circle cx="50" cy="50" r="50" fill="#c60b1e" />
+                  <rect x="0" y="25" width="100" height="50" fill="#ffc400" />
+                </svg>
+              )}
+              {code === 'en' && (
+                <svg viewBox="0 0 100 100" class="w-full h-full">
+                  <circle cx="50" cy="50" r="50" fill="#012169" />
+                  <path d="M0,0 L100,100 M100,0 L0,100" stroke="#FFFFFF" stroke-width="14" />
+                  <path d="M0,0 L100,100 M100,0 L0,100" stroke="#C8102E" stroke-width="8" />
+                  <path d="M50,0 V100 M0,50 H100" stroke="#FFFFFF" stroke-width="18" />
+                  <path d="M50,0 V100 M0,50 H100" stroke="#C8102E" stroke-width="10" />
+                </svg>
+              )}
+              {code === 'de' && (
+                <svg viewBox="0 0 100 100" class="w-full h-full">
+                  <circle cx="50" cy="50" r="50" fill="#FFCC00" />
+                  <path d="M0,50 Q0,0 50,0 Q100,0 100,50 Z" fill="#000000" />
+                  <rect x="3" y="33" width="94" height="34" fill="#DD0000" />
+                </svg>
+              )}
+              {code === 'fr' && (
+                <svg viewBox="0 0 100 100" class="w-full h-full">
+                  <circle cx="50" cy="50" r="50" fill="#FFFFFF" />
+                  <path d="M0,50 Q0,0 50,0 L50,100 Q0,100 0,50" fill="#002395" />
+                  <path d="M100,50 Q100,0 50,0 L50,100 Q100,100 100,50" fill="#ED2939" />
+                </svg>
+              )}
+              {code === 'it' && (
+                <svg viewBox="0 0 100 100" class="w-full h-full">
+                  <circle cx="50" cy="50" r="50" fill="#FFFFFF" />
+                  <path d="M0,50 Q0,0 50,0 L50,100 Q0,100 0,50" fill="#009246" />
+                  <path d="M100,50 Q100,0 50,0 L50,100 Q100,100 100,50" fill="#CE2B37" />
+                </svg>
+              )}
+            </a>
+          ))}
+        </div>
+
+        <!-- CTA -->
+        <a
+          href="#register"
+          class="btn-glow btn-press inline-flex items-center px-5 py-2.5 text-sm font-semibold text-white rounded-full"
+        >
+          {t(lang, 'nav.cta')}
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="flex items-center gap-3 md:hidden">
+        <!-- Mobile language flags -->
+        <div class="flex items-center gap-1">
+          {(Object.keys(languages) as Lang[]).map((code) => (
+            <a
+              href={langPaths[code]}
+              class={`w-5 h-5 rounded-full overflow-hidden border transition-all ${
+                code === lang
+                  ? 'border-primary-400 scale-110'
+                  : 'border-white/10 opacity-50'
+              }`}
+              title={languages[code]}
+              aria-label={languages[code]}
+            >
+              {code === 'es' && (
+                <svg viewBox="0 0 100 100" class="w-full h-full"><circle cx="50" cy="50" r="50" fill="#c60b1e" /><rect x="0" y="25" width="100" height="50" fill="#ffc400" /></svg>
+              )}
+              {code === 'en' && (
+                <svg viewBox="0 0 100 100" class="w-full h-full"><circle cx="50" cy="50" r="50" fill="#012169" /><path d="M50,0 V100 M0,50 H100" stroke="#FFFFFF" stroke-width="18" /><path d="M50,0 V100 M0,50 H100" stroke="#C8102E" stroke-width="10" /></svg>
+              )}
+              {code === 'de' && (
+                <svg viewBox="0 0 100 100" class="w-full h-full"><circle cx="50" cy="50" r="50" fill="#FFCC00" /><path d="M0,50 Q0,0 50,0 Q100,0 100,50 Z" fill="#000000" /><rect x="3" y="33" width="94" height="34" fill="#DD0000" /></svg>
+              )}
+              {code === 'fr' && (
+                <svg viewBox="0 0 100 100" class="w-full h-full"><circle cx="50" cy="50" r="50" fill="#FFFFFF" /><path d="M0,50 Q0,0 50,0 L50,100 Q0,100 0,50" fill="#002395" /><path d="M100,50 Q100,0 50,0 L50,100 Q100,100 100,50" fill="#ED2939" /></svg>
+              )}
+              {code === 'it' && (
+                <svg viewBox="0 0 100 100" class="w-full h-full"><circle cx="50" cy="50" r="50" fill="#FFFFFF" /><path d="M0,50 Q0,0 50,0 L50,100 Q0,100 0,50" fill="#009246" /><path d="M100,50 Q100,0 50,0 L50,100 Q100,100 100,50" fill="#CE2B37" /></svg>
+              )}
+            </a>
+          ))}
+        </div>
+        <button id="mobile-menu-btn" class="p-2 text-surface-400 hover:text-white" aria-label="Menu">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden border-t border-white/5 bg-surface-950/95 backdrop-blur-xl">
+    <div class="px-4 py-4 space-y-3">
+      <a href="#how-it-works" class="block text-sm font-medium text-surface-400 hover:text-white py-2">
+        {t(lang, 'nav.howItWorks')}
+      </a>
+      <a href="#pricing" class="block text-sm font-medium text-surface-400 hover:text-white py-2">
+        {t(lang, 'nav.pricing')}
+      </a>
+      <a href="#faq" class="block text-sm font-medium text-surface-400 hover:text-white py-2">
+        {t(lang, 'nav.faq')}
+      </a>
+      <a
+        href="#register"
+        class="btn-glow btn-press block w-full text-center px-5 py-3 text-sm font-semibold text-white rounded-full"
+      >
+        {t(lang, 'nav.cta')}
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Sticky Mobile CTA -->
+<div class="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-surface-950/90 backdrop-blur-xl border-t border-white/5 p-3">
+  <a
+    href="#register"
+    class="btn-glow btn-press block w-full text-center px-5 py-3 text-sm font-semibold text-white rounded-full"
+  >
+    {t(lang, 'nav.cta')}
+  </a>
+</div>
+
+<script>
+  // Mobile menu toggle
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  btn?.addEventListener('click', () => {
+    menu?.classList.toggle('hidden');
+  });
+
+  // Close mobile menu on link click
+  menu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      menu?.classList.add('hidden');
+    });
+  });
+
+  // Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 10) {
+      navbar?.classList.add('shadow-lg', 'shadow-primary-500/5');
+    } else {
+      navbar?.classList.remove('shadow-lg', 'shadow-primary-500/5');
+    }
+  });
+</script>

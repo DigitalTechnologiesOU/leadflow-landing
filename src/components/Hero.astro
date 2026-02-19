@@ -1,0 +1,213 @@
+---
+import { t, type Lang } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+---
+
+<section id="register" class="relative pt-24 pb-16 sm:pt-32 sm:pb-24 overflow-hidden bg-surface-950">
+  <!-- Background effects -->
+  <div class="absolute inset-0 -z-10 dot-grid"></div>
+  <div class="absolute inset-0 -z-10">
+    <div class="absolute top-0 left-1/4 w-[600px] h-[400px] bg-primary-500/10 rounded-full blur-[120px]"></div>
+    <div class="absolute bottom-0 right-1/4 w-[500px] h-[350px] bg-cyber-400/8 rounded-full blur-[100px]"></div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <!-- Left: Copy -->
+      <div class="text-center lg:text-left">
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 glass text-cyber-300 rounded-full text-sm font-medium mb-6 float">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          {t(lang, 'hero.badge')}
+        </div>
+
+        <!-- Headline -->
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-tight" style="font-family: var(--font-display);">
+          {t(lang, 'hero.headline')}
+        </h1>
+
+        <!-- Subheadline -->
+        <p class="mt-6 text-lg sm:text-xl text-surface-400 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+          {t(lang, 'hero.subheadline')}
+        </p>
+
+        <!-- Anti-agency line -->
+        <p class="mt-4 text-sm font-medium text-surface-500 tracking-wide uppercase">
+          {t(lang, 'hero.anti_agency')}
+        </p>
+
+        <!-- Urgency badge -->
+        <div class="mt-4 inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium bg-amber-500/10 text-amber-400 border border-amber-500/20">
+          <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+          {t(lang, 'hero.urgency')}
+        </div>
+
+        <!-- CTAs -->
+        <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+          <a
+            href="#register-form"
+            class="btn-glow btn-press inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white rounded-full"
+          >
+            {t(lang, 'hero.cta.primary')}
+            <svg class="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </a>
+          <button
+            id="play-video-btn"
+            type="button"
+            class="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-surface-300 glass rounded-full hover:border-primary-500/30 hover:text-white transition-all cursor-pointer"
+          >
+            <svg class="mr-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            {t(lang, 'hero.cta.secondary')}
+          </button>
+        </div>
+
+        <!-- Small trust line -->
+        <div class="mt-6 flex items-center gap-4 justify-center lg:justify-start text-sm text-surface-500">
+          <span class="flex items-center gap-1">
+            <svg class="w-4 h-4 text-cyber-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            {t(lang, 'hero.trust.nocard')}
+          </span>
+          <span class="flex items-center gap-1">
+            <svg class="w-4 h-4 text-cyber-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            {t(lang, 'hero.trust.setup')}
+          </span>
+          <span class="flex items-center gap-1">
+            <svg class="w-4 h-4 text-cyber-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            {t(lang, 'hero.trust.cancel')}
+          </span>
+        </div>
+      </div>
+
+      <!-- Right: Registration Form -->
+      <div id="register-form" class="scroll-mt-24 reveal-right">
+        <div class="relative">
+          <div class="glass rounded-2xl p-8 glow-sm">
+            <h3 class="text-xl font-bold text-white mb-6 text-center" style="font-family: var(--font-display);">
+              {t(lang, 'hero.cta.primary')}
+            </h3>
+            <form class="space-y-4" data-form="register">
+              <div>
+                <label for="name" class="block text-sm font-medium text-surface-300 mb-1.5">
+                  {t(lang, 'hero.form.name')}
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-surface-500 focus:ring-2 focus:ring-primary-500/30 focus:border-primary-500/50 transition-colors outline-none"
+                  placeholder={t(lang, 'hero.form.name')}
+                />
+              </div>
+              <div>
+                <label for="email" class="block text-sm font-medium text-surface-300 mb-1.5">
+                  {t(lang, 'hero.form.email')}
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-surface-500 focus:ring-2 focus:ring-primary-500/30 focus:border-primary-500/50 transition-colors outline-none"
+                  placeholder="tu@gimnasio.com"
+                />
+              </div>
+              <div>
+                <label for="gym" class="block text-sm font-medium text-surface-300 mb-1.5">
+                  {t(lang, 'hero.form.gym')}
+                </label>
+                <input
+                  type="text"
+                  id="gym"
+                  name="gym_name"
+                  required
+                  class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-surface-500 focus:ring-2 focus:ring-primary-500/30 focus:border-primary-500/50 transition-colors outline-none"
+                  placeholder={t(lang, 'hero.form.gym')}
+                />
+              </div>
+              <button
+                type="submit"
+                class="btn-glow btn-press w-full px-6 py-4 text-base font-semibold text-white rounded-xl"
+              >
+                {t(lang, 'hero.form.submit')}
+              </button>
+              <p class="text-xs text-surface-500 text-center">
+                {t(lang, 'hero.form.nocommit')}
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Video Modal -->
+<div id="video-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+  <div class="relative w-full max-w-4xl mx-auto">
+    <!-- Close button -->
+    <button id="close-video-btn" class="absolute -top-12 right-0 text-white hover:text-surface-300 transition-colors cursor-pointer">
+      <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+
+    <!-- Video container -->
+    <div class="relative rounded-2xl overflow-hidden bg-surface-900 aspect-video border border-white/10">
+      <div id="video-placeholder" class="absolute inset-0 flex flex-col items-center justify-center text-white">
+        <img src="/images/video-thumbnail.jpg" alt="Video preview" class="absolute inset-0 w-full h-full object-cover opacity-30" />
+        <div class="relative z-10 text-center">
+          <div class="w-20 h-20 mx-auto rounded-full glass flex items-center justify-center mb-4 pulse-ring">
+            <svg class="w-10 h-10 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+          <p class="text-xl font-semibold">{t(lang, 'hero.video.title')}</p>
+          <p class="mt-2 text-sm text-surface-400">{t(lang, 'hero.video.description')}</p>
+        </div>
+      </div>
+
+      <!-- When you have a video, uncomment this and remove the placeholder above: -->
+      <!-- <iframe id="video-iframe" class="absolute inset-0 w-full h-full" src="" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> -->
+    </div>
+  </div>
+</div>
+
+<script>
+  const playBtn = document.getElementById('play-video-btn');
+  const modal = document.getElementById('video-modal');
+  const closeBtn = document.getElementById('close-video-btn');
+
+  playBtn?.addEventListener('click', () => {
+    modal?.classList.remove('hidden');
+    modal?.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+  });
+
+  closeBtn?.addEventListener('click', closeModal);
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  function closeModal() {
+    modal?.classList.add('hidden');
+    modal?.classList.remove('flex');
+    document.body.style.overflow = '';
+  }
+</script>
