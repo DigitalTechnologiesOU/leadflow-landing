@@ -39,42 +39,38 @@ const steps = [
 ];
 ---
 
-<section id="how-it-works" class="relative py-16 sm:py-24 bg-surface-950 overflow-hidden">
-  <!-- Background effects -->
-  <div class="absolute inset-0 dot-grid"></div>
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-primary-500/5 rounded-full blur-[120px]"></div>
-
+<section id="how-it-works" class="relative py-16 sm:py-24 bg-gradient-to-b from-primary-50/30 via-primary-50/10 to-transparent overflow-hidden">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
     <div class="text-center mb-12 sm:mb-16 reveal">
-      <h2 class="text-3xl sm:text-4xl font-bold text-white" style="font-family: var(--font-display);">
+      <h2 class="text-3xl sm:text-4xl font-bold text-surface-900" style="font-family: var(--font-display);">
         {t(lang, 'how.headline')}
       </h2>
     </div>
 
     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 relative stagger-children">
       <!-- Connection line (desktop) -->
-      <div class="hidden lg:block absolute top-20 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-primary-500/50 via-cyber-400/50 to-accent-500/50"></div>
+      <div class="hidden lg:block absolute top-20 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-primary-300/50 via-cyber-400/50 to-accent-400/50"></div>
 
       {steps.map((step) => (
         <div class={`relative text-center ${step.accent ? 'lg:mt-0' : ''}`}>
           <!-- Step number circle -->
-          <div class={`relative mx-auto w-16 h-16 glass rounded-full flex items-center justify-center mb-6 z-10 ${step.accent ? 'glow-cyber' : 'glow-sm'}`}>
-            <span class={`font-bold text-lg font-mono ${step.accent ? 'text-cyber-400' : 'text-primary-400'}`}>{step.number}</span>
+          <div class={`relative mx-auto w-16 h-16 rounded-full flex items-center justify-center mb-6 z-10 border-2 bg-white shadow-md ${step.accent ? 'border-cyber-400 shadow-cyber-400/20' : 'border-primary-300 shadow-primary-500/10'}`}>
+            <span class={`font-bold text-lg font-mono ${step.accent ? 'text-cyber-500' : 'text-primary-500'}`}>{step.number}</span>
           </div>
 
           <!-- Icon -->
           <div class={`w-14 h-14 mx-auto rounded-xl flex items-center justify-center mb-5 border ${
             step.accent
-              ? 'bg-cyber-400/10 text-cyber-400 border-cyber-400/20'
-              : 'bg-primary-500/10 text-primary-400 border-primary-500/20'
+              ? 'bg-cyber-50 text-cyber-500 border-cyber-200'
+              : 'bg-primary-50 text-primary-500 border-primary-200'
           }`}>
             <Fragment set:html={step.icon} />
           </div>
 
-          <h3 class="text-lg font-bold text-white mb-3">
+          <h3 class="text-lg font-bold text-surface-900 mb-3">
             {step.title}
           </h3>
-          <p class="text-surface-400 leading-relaxed max-w-sm mx-auto">
+          <p class="text-surface-500 leading-relaxed max-w-sm mx-auto">
             {step.description}
           </p>
         </div>

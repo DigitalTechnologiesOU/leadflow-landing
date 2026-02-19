@@ -29,32 +29,27 @@ const tableFeatures = ['leads', 'creatives', 'followup', 'booking', 'optimizatio
 const tableColumns = ['agency', 'freelancer', 'diy', 'leadflow'] as const;
 ---
 
-<section class="relative py-16 sm:py-24 bg-surface-950 overflow-hidden">
+<section class="relative py-16 sm:py-24 bg-gradient-to-b from-surface-50 to-white overflow-hidden">
   <!-- Gradient separator line -->
-  <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary-500/50 to-transparent"></div>
-
-  <!-- Background effects -->
-  <div class="absolute inset-0 dot-grid opacity-30"></div>
-  <div class="absolute top-0 left-1/4 w-96 h-96 bg-primary-500/5 rounded-full blur-3xl"></div>
-  <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-accent-500/5 rounded-full blur-3xl"></div>
+  <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary-500/30 to-transparent"></div>
 
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
     <!-- PART 1: The emotional story -->
     <div class="max-w-3xl mx-auto text-center mb-16 sm:mb-20">
-      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white reveal" style="font-family: var(--font-display);">
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-surface-900 reveal" style="font-family: var(--font-display);">
         {t(lang, 'compare.headline')}
       </h2>
 
-      <div class="mt-8 space-y-4 text-base sm:text-lg text-surface-400 reveal">
+      <div class="mt-8 space-y-4 text-base sm:text-lg text-surface-500 reveal">
         <p>{t(lang, 'compare.story.p1')}</p>
         <p>{t(lang, 'compare.story.p2')}</p>
-        <p class="text-surface-300">{t(lang, 'compare.story.p3')}</p>
+        <p class="text-surface-700">{t(lang, 'compare.story.p3')}</p>
       </div>
 
       <!-- The highlight question -->
       <div class="mt-8 reveal">
-        <p class="text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-cyber-400">
+        <p class="text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-500 to-cyber-500">
           {t(lang, 'compare.story.highlight')}
         </p>
       </div>
@@ -62,21 +57,21 @@ const tableColumns = ['agency', 'freelancer', 'diy', 'leadflow'] as const;
 
     <!-- PART 2: Comparison cards -->
     <div class="mb-16 sm:mb-20">
-      <h3 class="text-xl sm:text-2xl font-bold text-white text-center mb-8 reveal" style="font-family: var(--font-display);">
+      <h3 class="text-xl sm:text-2xl font-bold text-surface-900 text-center mb-8 reveal" style="font-family: var(--font-display);">
         {t(lang, 'compare.options.headline')}
       </h3>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5 stagger-children">
         <!-- Agency, Freelancer, DIY cards (negative) -->
         {losers.map((item) => (
-          <div class="relative p-6 rounded-2xl bg-white/[0.03] backdrop-blur-sm border border-red-500/20 hover:border-red-500/40 transition-all duration-300">
+          <div class="relative p-6 rounded-2xl bg-red-50/40 backdrop-blur-sm border border-red-200 hover:border-red-300 transition-all duration-300">
             <div class="flex items-center gap-3 mb-4">
-              <div class={`w-10 h-10 rounded-xl bg-red-500/10 text-red-400 flex items-center justify-center border border-red-500/20`}>
+              <div class="w-10 h-10 rounded-xl bg-red-100 text-red-500 flex items-center justify-center border border-red-200">
                 <Fragment set:html={item.icon} />
               </div>
               <div>
-                <h4 class="text-white font-bold text-sm">{t(lang, `compare.${item.key}.title`)}</h4>
-                <p class="text-red-400 text-xs font-semibold">{t(lang, `compare.${item.key}.price`)}</p>
+                <h4 class="text-surface-900 font-bold text-sm">{t(lang, `compare.${item.key}.title`)}</h4>
+                <p class="text-red-500 text-xs font-semibold">{t(lang, `compare.${item.key}.price`)}</p>
               </div>
             </div>
             <p class="text-surface-500 text-sm mb-4">{t(lang, `compare.${item.key}.desc`)}</p>
@@ -94,32 +89,32 @@ const tableColumns = ['agency', 'freelancer', 'diy', 'leadflow'] as const;
         ))}
 
         <!-- LeadFlow card (positive, highlighted) -->
-        <div class="relative p-6 rounded-2xl bg-white/[0.05] backdrop-blur-sm border border-accent-400/30 hover:border-accent-400/50 transition-all duration-300 glow-accent">
+        <div class="relative p-6 rounded-2xl bg-accent-50/50 backdrop-blur-sm border border-accent-300 hover:border-accent-400 transition-all duration-300 shadow-lg shadow-accent-500/10">
           <!-- Best option badge -->
           <div class="absolute -top-3 right-4">
-            <span class="px-3 py-1 bg-accent-500 text-white text-xs font-bold rounded-full shadow-lg shadow-accent-500/20">
+            <span class="px-3 py-1 bg-accent-500 text-white text-xs font-bold rounded-full shadow-md shadow-accent-500/20">
               ✓
             </span>
           </div>
           <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-10 rounded-xl bg-accent-500/10 text-accent-400 flex items-center justify-center border border-accent-500/20">
+            <div class="w-10 h-10 rounded-xl bg-accent-100 text-accent-600 flex items-center justify-center border border-accent-200">
               <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/>
               </svg>
             </div>
             <div>
-              <h4 class="text-white font-bold text-sm">{t(lang, 'compare.leadflow.title')}</h4>
-              <p class="text-accent-400 text-xs font-semibold">{t(lang, 'compare.leadflow.price')}</p>
+              <h4 class="text-surface-900 font-bold text-sm">{t(lang, 'compare.leadflow.title')}</h4>
+              <p class="text-accent-600 text-xs font-semibold">{t(lang, 'compare.leadflow.price')}</p>
             </div>
           </div>
-          <p class="text-surface-400 text-sm mb-4">{t(lang, 'compare.leadflow.desc')}</p>
+          <p class="text-surface-600 text-sm mb-4">{t(lang, 'compare.leadflow.desc')}</p>
           <div class="space-y-2.5">
             {[1, 2, 3].map((n) => (
               <div class="flex items-start gap-2">
-                <svg class="w-4 h-4 text-accent-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg class="w-4 h-4 text-accent-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                 </svg>
-                <span class="text-surface-300 text-xs leading-relaxed">{t(lang, `compare.leadflow.pro${n}`)}</span>
+                <span class="text-surface-700 text-xs leading-relaxed">{t(lang, `compare.leadflow.pro${n}`)}</span>
               </div>
             ))}
           </div>
@@ -129,20 +124,20 @@ const tableColumns = ['agency', 'freelancer', 'diy', 'leadflow'] as const;
 
     <!-- PART 3: Feature comparison table -->
     <div class="mb-16 sm:mb-20 reveal">
-      <h3 class="text-xl sm:text-2xl font-bold text-white text-center mb-8" style="font-family: var(--font-display);">
+      <h3 class="text-xl sm:text-2xl font-bold text-surface-900 text-center mb-8" style="font-family: var(--font-display);">
         {t(lang, 'compare.table.headline')}
       </h3>
 
       <!-- Desktop table -->
-      <div class="hidden md:block overflow-x-auto">
+      <div class="hidden md:block overflow-x-auto rounded-xl border border-surface-200">
         <table class="w-full border-collapse">
           <thead>
-            <tr>
-              <th class="text-left text-sm font-semibold text-surface-400 p-4 border-b border-white/10">
+            <tr class="bg-surface-50">
+              <th class="text-left text-sm font-semibold text-surface-500 p-4 border-b border-surface-200">
                 {t(lang, 'compare.table.feature')}
               </th>
               {tableColumns.map((col) => (
-                <th class={`text-center text-sm font-semibold p-4 border-b ${col === 'leadflow' ? 'text-accent-400 border-accent-400/30 bg-accent-500/5' : 'text-surface-400 border-white/10'}`}>
+                <th class={`text-center text-sm font-semibold p-4 border-b ${col === 'leadflow' ? 'text-accent-600 border-surface-200 bg-accent-50/50' : 'text-surface-500 border-surface-200'}`}>
                   {t(lang, `compare.${col}.title`)}
                 </th>
               ))}
@@ -150,12 +145,12 @@ const tableColumns = ['agency', 'freelancer', 'diy', 'leadflow'] as const;
           </thead>
           <tbody>
             {tableFeatures.map((feature, i) => (
-              <tr class={i % 2 === 0 ? 'bg-white/[0.02]' : ''}>
-                <td class="text-sm font-medium text-surface-300 p-4 border-b border-white/5">
+              <tr class={i % 2 === 0 ? 'bg-white' : 'bg-surface-50/50'}>
+                <td class="text-sm font-medium text-surface-700 p-4 border-b border-surface-100">
                   {t(lang, `compare.table.${feature}`)}
                 </td>
                 {tableColumns.map((col) => (
-                  <td class={`text-center text-sm p-4 border-b border-white/5 ${col === 'leadflow' ? 'text-accent-400 font-semibold bg-accent-500/5' : col === 'diy' ? 'text-amber-400/70' : 'text-red-400/70'}`}>
+                  <td class={`text-center text-sm p-4 border-b border-surface-100 ${col === 'leadflow' ? 'text-accent-600 font-semibold bg-accent-50/30' : col === 'diy' ? 'text-amber-600' : 'text-red-500'}`}>
                     {t(lang, `compare.table.${col}.${feature}`)}
                   </td>
                 ))}
@@ -168,17 +163,17 @@ const tableColumns = ['agency', 'freelancer', 'diy', 'leadflow'] as const;
       <!-- Mobile: scrollable cards -->
       <div class="md:hidden space-y-3">
         {tableFeatures.map((feature) => (
-          <div class="rounded-xl bg-white/[0.03] border border-white/10 p-4">
-            <p class="text-xs font-semibold text-surface-400 uppercase tracking-wider mb-3">
+          <div class="rounded-xl bg-white border border-surface-200 p-4 shadow-sm">
+            <p class="text-xs font-semibold text-surface-500 uppercase tracking-wider mb-3">
               {t(lang, `compare.table.${feature}`)}
             </p>
             <div class="grid grid-cols-2 gap-2">
               {tableColumns.map((col) => (
-                <div class={`rounded-lg p-2 text-center ${col === 'leadflow' ? 'bg-accent-500/10 border border-accent-500/20' : 'bg-white/[0.03]'}`}>
-                  <p class={`text-[10px] font-medium mb-0.5 ${col === 'leadflow' ? 'text-accent-400' : 'text-surface-500'}`}>
+                <div class={`rounded-lg p-2 text-center ${col === 'leadflow' ? 'bg-accent-50 border border-accent-200' : 'bg-surface-50'}`}>
+                  <p class={`text-[10px] font-medium mb-0.5 ${col === 'leadflow' ? 'text-accent-600' : 'text-surface-500'}`}>
                     {t(lang, `compare.${col}.title`)}
                   </p>
-                  <p class={`text-xs font-semibold ${col === 'leadflow' ? 'text-accent-300' : col === 'diy' ? 'text-amber-400/80' : 'text-red-400/80'}`}>
+                  <p class={`text-xs font-semibold ${col === 'leadflow' ? 'text-accent-600' : col === 'diy' ? 'text-amber-600' : 'text-red-500'}`}>
                     {t(lang, `compare.table.${col}.${feature}`)}
                   </p>
                 </div>
@@ -191,8 +186,8 @@ const tableColumns = ['agency', 'freelancer', 'diy', 'leadflow'] as const;
 
     <!-- PART 4: Psychological trigger + CTA -->
     <div class="max-w-2xl mx-auto text-center reveal">
-      <div class="relative p-8 sm:p-10 rounded-2xl bg-gradient-to-br from-red-500/10 via-transparent to-accent-500/10 border border-white/10">
-        <p class="text-base sm:text-lg text-surface-300 italic leading-relaxed">
+      <div class="relative p-8 sm:p-10 rounded-2xl bg-gradient-to-br from-red-50/50 via-white to-accent-50/50 border border-surface-200 shadow-sm">
+        <p class="text-base sm:text-lg text-surface-700 italic leading-relaxed">
           {t(lang, 'compare.trigger')}
         </p>
         <div class="mt-6">
